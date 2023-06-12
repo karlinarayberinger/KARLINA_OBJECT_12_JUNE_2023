@@ -1,0 +1,263 @@
+<hr>
+<p><strong>SQUARE_ROOT_APPROXIMATION_12_JUNE_2023</strong></p>
+<hr>
+<p><em>To view hidden text inside of the preformatted text boxes below, scroll horizontally.</em></p>
+<pre style="background:#ffac59">The content below this orange preformatted text box is a copy of all of the source code of the web page whose uniform resource locator was as follows: (https://karlinaobject.wordpress.com/square_root_approximation/).
+
+The content below this orange preformatted text box is a was copied from the aforementioned web page on 12_JUNE_2023.
+
+This web page (which includes this orange preformatted text box) was published on 12_JUNE_2023 by karbytes.
+
+This web page (which includes this orange preformatted text box) is licensed by karbytes as <a style="background: #000000;color: #ff9000" href="https://karlinaobject.wordpress.com/public_domain/" target="_blank" rel="noopener">PUBLIC_DOMAIN</a> intellectual property.
+</pre>
+<hr>
+<p><strong>SQUARE_ROOT_APPROXIMATION</strong></p>
+<hr>
+<p><span style="background:#ffff00">The <a style="background:#ff9000;color:#000000" href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank" rel="noopener">C++</a> program featured in this tutorial web page computes the approximate square root of a nonnegative number using the <a style="background:#ff9000;color:#000000" href="https://en.wikipedia.org/wiki/Methods_of_computing_square_roots" target="_blank" rel="noopener">Babylonian Method</a>.</span></p>
+<p><span style="background:#00ff00">To view hidden text inside of the preformatted text boxes below, scroll horizontally.</span></p>
+<pre>Y := square_root(X).
+(Y * Y) = X.
+</pre>
+<hr>
+<p><strong>SOFTWARE_APPLICATION_COMPONENTS</strong></p>
+<hr>
+<p>C++_source_file: <a style="background:#000000;color:#00ff00" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation.cpp" target="_blank" rel="noopener">https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation.cpp</a></p>
+<p>plain-text_file: <a style="background:#000000;color:#ff9000" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation_output.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation_output.txt</a></p>
+<hr>
+<p><strong>PROGRAM_COMPILATION_AND_EXECUTION</strong></p>
+<hr>
+<p>STEP_0: Copy and paste the C++ <a style="background:#000000;color:#00ff00" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation.cpp" target="_blank" rel="noopener">source code</a> into a new text editor document and save that document as the following file name:</p>
+<pre>square_root_approximation.cpp</pre>
+<p>STEP_1: Open a <a style="background:#ff9000;color:#000000" href="https://en.wikipedia.org/wiki/Unix" target="_blank" rel="noopener">Unix</a> command line terminal application and set the current directory to wherever the C++ is located on the local machine (e.g. Desktop).</p>
+<pre>cd Desktop</pre>
+<p>STEP_2: Compile the C++ file into machine-executable instructions (i.e. object file) and then into an executable piece of software named <strong>app</strong> using the following command:</p>
+<pre>g++ square_root_approximation.cpp -o app</pre>
+<p>STEP_3: If the program compilation command does not work, then use the following command to install the C++ compiler:</p>
+<pre>sudo apt install build-essential</pre>
+<p>STEP_4: After running the <strong>g++</strong> command, run the executable file using the following command:</p>
+<pre>./app</pre>
+<p>STEP_5: Once the application is running, the following prompt will appear:</p>
+<pre>Enter a nonnegative number which is no larger than 100:</pre>
+<p>STEP_6: Enter a value for N using the using the keyboard.</p>
+<p>STEP_7: Observe program results on the command line terminal and in the <a style="background:#000000;color:#ff9000" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation_output.txt" target="_blank" rel="noopener">output file</a>.</p>
+<hr>
+<p><strong>PROGRAM_SOURCE_CODE</strong></p>
+<hr>
+<p><span style="background:#00ff00">When copy-pasting the source code from the preformatted text box below into a text editor document, remove the spaces between the angle brackets and the library names in the preprocessing directives code block. (The spaces were inserted between the library names and angle brackets in the preformatted text box below in order to prevent the WordPress server from misinterpreting those C++ library references as <a style="background:#ff9000;color:#000000" href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">HTML</a> tags in the source code of this web page).</span></p>
+<p>C++_source_file: <a style="background:#000000;color:#00ff00" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation.cpp" target="_blank" rel="noopener">https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation.cpp</a></p>
+<hr>
+<pre>/**
+ * file: square_root_approximation.cpp
+ * type: C++ (source file)
+ * date: 28_NOVEMBER_2022
+ * author: Karlina Ray Beringer
+ * license: PUBLIC_DOMAIN
+ */
+
+/* preprocessing directives */
+#include  &lt; iostream &gt; // library for defining objects which handle command line input and command line output
+#include  &lt; fstream &gt; // library for defining objects which handle file input and file output
+#define MAXIMUM_N 100 // constant which represents maximum N value 
+#define E 0.00000001 // constant which represents the degree of accuracy of the square root approximation 
+
+/* function prototype */
+long double compute_square_root_of_nonnegative_integer(float N, std::ostream &amp; output);
+
+/**
+ * Compute the approximate square root of a nonnegative number, N, using the Babylonian Method.
+ * 
+ * Assume that N is a float type value and that output is an output stream object.
+ * 
+ * This function returns a value whose data type is long double (which is a floating-point number).
+ */
+long double compute_square_root_of_nonnegative_integer(float N, std::ostream &amp; output)
+{
+    int i = 0;
+    long double X = 0.0, Y = 1.0;
+    X = ((N &lt; 0) || (N &gt; MAXIMUM_N)) ? 0 : N;
+    X = N;
+    output &lt;&lt; "\n\nN = " &lt;&lt; N &lt;&lt; ". // number to take the square root of";
+    output &lt;&lt; "\nX = " &lt;&lt; X &lt;&lt; ". // approximate square root of N";
+    output &lt;&lt; "\nY = " &lt;&lt; Y &lt;&lt; ". // number to add to X to divide by 2 per square root approximation";
+    while (X - Y &gt; E) 
+    {
+        X = (X + Y) / 2;
+        Y = N / X;
+        output &lt;&lt; "\n\nwhile loop iteration # " &lt;&lt; i &lt;&lt; ":";
+        output &lt;&lt; "\nX = ((X + Y) / 2) = " &lt;&lt; X &lt;&lt; ".";
+        output &lt;&lt; "\nY = (N / X) = " &lt;&lt; Y &lt;&lt; ".";
+        i += 1;
+    }
+    return X;
+}
+
+/* program entry point */
+int main()
+{
+    // Declare a float type variable and set its initial value to zero.
+    float N = 0;
+
+    // Declare one double type variable and set its initial value to zero.
+    long double A = 0.0;
+
+    // Declare a file output stream object.
+    std::ofstream file;
+
+    // Set the number of digits of floating-point numbers which are printed to the command line terminal to 100 digits.
+    std::cout.precision(100);
+
+    // Set the number of digits of floating-point numbers which are printed to the file output stream to 100 digits.
+    file.precision(100);
+
+    /**
+     * If square_root_approximation_output.txt does not already exist in the same directory as square_root_approximation.cpp, 
+     * create a new file named square_root_approximation_output.txt.
+     * 
+     * Open the plain-text file named square_root_approximation_output.txt 
+     * and set that file to be overwritten with program data.
+     */
+    file.open("square_root_approximation_output.txt");
+
+    // Print an opening message to the command line terminal.
+    std::cout &lt;&lt; "\n\n--------------------------------";
+    std::cout &lt;&lt; "\nStart Of Program";
+    std::cout &lt;&lt; "\n--------------------------------";
+
+    // Print an opening message to the file output stream.
+    file &lt;&lt; "--------------------------------";
+    file &lt;&lt; "\nStart Of Program";
+    file &lt;&lt; "\n--------------------------------";
+
+    // Print "Enter a nonnegative number which is no larger than {MAXIMUM_N}: " to the command line terminal.
+    std::cout &lt;&lt; "\n\nEnter a nonnegative number which is no larger than " &lt;&lt; MAXIMUM_N &lt;&lt; ": ";
+
+    // Scan the command line terminal for the most recent keyboard input value.
+    std::cin &gt;&gt; N;
+
+    // Print "The value which was entered for N is {N}." to the command line terminal.
+    std::cout &lt;&lt; "\nThe value which was entered for N is " &lt;&lt; N &lt;&lt; ".";
+
+    // Print "The value which was entered for N is {N}." to the file output stream.
+    file &lt;&lt; "\n\nThe value which was entered for N is " &lt;&lt; N &lt;&lt; ".";
+
+    // If N is smaller than 0 or if N is larger than MAXIMUM_N, set N to 0.
+    N = ((N &lt; 0) || (N &gt; MAXIMUM_N)) ? 0 : N; // A tertiary operation (using the tertiary operator (?)) is an alternative to using if-else statements.
+
+    // Print "N := {N}." to the command line terminal.
+    std::cout &lt;&lt; "\n\nN := " &lt;&lt; N &lt;&lt; ".";
+
+    // Print "N := {N}." to the file output stream.
+    file &lt;&lt; "\n\nN := " &lt;&lt; N &lt;&lt; ".";
+
+    // Print a horizontal line to the command line terminal.
+    std::cout &lt;&lt; "\n\n--------------------------------";
+
+    // Print a horizontal line to the command line terminal.
+    file &lt;&lt; "\n\n--------------------------------";
+
+    // Print "Computing the approximate square root of N:" to the command line terminal.
+    std::cout &lt;&lt; "\n\nComputing the approximate square root of N:";
+
+    // Print "Computing the approximate square root of N:" to the file output stream.
+    file &lt;&lt; "\n\nComputing the approximate square root of N:";
+
+    // Compute the approximate square root of N using the Babylonian method, print the computational steps to the command line terminal, and store the function result in A.
+    A = compute_square_root_of_nonnegative_integer(N, std::cout);
+
+    // Compute the approximate square root of N using the Babylonian method and print the computational steps to the file output stream.
+    compute_square_root_of_nonnegative_integer(N, file);
+
+    // Print a horizontal line to the command line terminal.
+    std::cout &lt;&lt; "\n\n--------------------------------";
+
+    // Print a horizontal line to the command line terminal.
+    file &lt;&lt; "\n\n--------------------------------";
+
+    // Print "A = approximate_square_root({N}) = {A}." to the command line terminal.
+    std::cout &lt;&lt; "\n\nA = approximate_square_root(" &lt;&lt; N &lt;&lt; ") = " &lt;&lt; A &lt;&lt; ".";
+
+    // Print "A = approximate_square_root({N}) = {A}." to the file output stream.
+    file &lt;&lt; "\n\nA = approximate_square_root(" &lt;&lt; N &lt;&lt; ") = " &lt;&lt; A &lt;&lt; ".";
+
+    // Print "(A * A) = " &lt;&lt; {(A * A)} &lt;&lt; ". // the approximate value of N" to the command line terminal.
+    std::cout &lt;&lt; "\n\n(A * A) = " &lt;&lt; (A * A) &lt;&lt; ". // the approximate value of N";
+
+    // Print "(A * A) = " &lt;&lt; {(A * A)} &lt;&lt; ". // the approximate value of N" to the file output stream.
+    file &lt;&lt; "\n\n(A * A) = " &lt;&lt; (A * A) &lt;&lt; ". // the approximate value of N";
+
+    // Print a closing message to the command line terminal.
+    std::cout &lt;&lt; "\n\n--------------------------------";
+    std::cout &lt;&lt; "\nEnd Of Program";
+    std::cout &lt;&lt; "\n--------------------------------\n\n";
+
+    // Print a closing message to the file output stream.
+    file &lt;&lt; "\n\n--------------------------------";
+    file &lt;&lt; "\nEnd Of Program";
+    file &lt;&lt; "\n--------------------------------";
+
+    // Close the file output stream.
+    file.close();
+
+    // Exit the program.
+    return 0;
+}
+</pre>
+<hr>
+<p><strong>SAMPLE_PROGRAM_OUTPUT</strong></p>
+<hr>
+<p>The text in the preformatted text box below was generated by one use case of the C++ program featured in this <a style="background:#ff9000;color:#000000" href="https://en.wikipedia.org/wiki/Computer_programming" target="_blank" rel="noopener">computer programming</a> tutorial web page.</p>
+<p>plain-text_file: <a style="background:#000000;color:#ff9000" href="https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation_output.txt" target="_blank" rel="noopener">https://raw.githubusercontent.com/karlinarayberinger/karlina_object_2022_starter_pack/main/square_root_approximation_output.txt</a></p>
+<hr>
+<pre>--------------------------------
+Start Of Program
+--------------------------------
+
+The value which was entered for N is 21.5.
+
+N := 21.5.
+
+--------------------------------
+
+Computing the approximate square root of N:
+
+N = 21.5. // number to take the square root of
+X = 21.5. // approximate square root of N
+Y = 1. // number to add to X to divide by 2 per square root approximation
+
+while loop iteration # 0:
+X = ((X + Y) / 2) = 11.25.
+Y = (N / X) = 1.911111111111111111079789715017085427462006919085979461669921875.
+
+while loop iteration # 1:
+X = ((X + Y) / 2) = 6.58055555555555555559410496613281793543137609958648681640625.
+Y = (N / X) = 3.26720135078092021956551460615258974939933978021144866943359375.
+
+while loop iteration # 2:
+X = ((X + Y) / 2) = 4.9238784531682378876882300033912542858161032199859619140625.
+Y = (N / X) = 4.3664765904540075373667373792585522096487693488597869873046875.
+
+while loop iteration # 3:
+X = ((X + Y) / 2) = 4.64517752181112271274432412582200413453392684459686279296875.
+Y = (N / X) = 4.6284560491064501070758441247932069018133915960788726806640625.
+
+while loop iteration # 4:
+X = ((X + Y) / 2) = 4.63681678545878640969324369081050463137216866016387939453125.
+Y = (N / X) = 4.636801710049170810630514427685966438730247318744659423828125.
+
+while loop iteration # 5:
+X = ((X + Y) / 2) = 4.6368092477539786101618790592482355350512079894542694091796875.
+Y = (N / X) = 4.636809247741725142390178948659240631968714296817779541015625.
+
+--------------------------------
+
+A = approximate_square_root(21.5) = 4.6368092477539786101618790592482355350512079894542694091796875.
+
+(A * A) = 21.5000000000568169920833749841904136701487004756927490234375. // the approximate value of N
+
+--------------------------------
+End Of Program
+--------------------------------
+</pre>
+<hr>
+<p>This web page was last updated on 28_NOVEMBER_2022. The content displayed on this web page is licensed as <a style="background:#000000;color:#ff9000" href="https://karlinaobject.wordpress.com/public_domain/" target="_blank" rel="noopener">PUBLIC_DOMAIN</a> intellectual property.</p>
+<hr>
